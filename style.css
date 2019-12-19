@@ -1,31 +1,58 @@
-       .div1
-	{
-		width:650px;
-		height:45px;
-		background-color:grey;
-		position:fixed;
-		left:250px;
-		bottom:50px;
-	}
-	.div2
-	{
-		width:100px;
-		height:45px;
-		background-color:lightblue;
-		position:fixed;
-		left:900px;
-		bottom:50px;
-	}
-	.div3
-	{
-		width:100px;
-		height:45px;
-		background-color:orange;
-		position:fixed;
-		left:1000px;
-		bottom:50px;
-	}
-	#canvas1
-	{
-		border:1px solid white;
-	}
+.ansBox
+{
+	width:650px;
+	height:45px;
+	background-color:grey;
+	position:fixed;
+	left:250px;
+	bottom:50px;
+}
+#ans
+{
+	font-size:15px;
+	text-align:center;
+	font-family:verdana;
+	font-weight:bold
+}
+.submit
+{
+	width:100px;
+	height:45px;
+	background-color:lightblue;
+	position:fixed;
+	left:900px;
+	bottom:50px;
+}
+.score
+{
+	position:absolute;
+	top:0px;
+	left:20px;
+	font-size:25px;
+}
+.paraText
+{
+	text-align:center;
+	font-family:verdana;
+}
+#check
+{
+	position:absolute;
+	top:30%;
+	left:45%;
+	color:orange;
+	font-size:40px;
+}
+.erase
+{
+	width:100px;
+	height:45px;
+	background-color:orange;
+	position:fixed;
+	left:1000px;
+	bottom:50px;
+}
+#canvas
+{
+	border:1px solid white;
+}

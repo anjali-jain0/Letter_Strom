@@ -1,129 +1,27 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
 <head>
 	<title>Letter-Storm</title>
   <link href='style.css' rel="stylesheet">
 </head>
-
 <body>
-	<canvas id="canvas1" width="100%" height="100%"></canvas>
-	<div class="div1"><p id="ans" style="font-size:15px;text-align:center;font-family:verdana;font-weight:bold"></p></div>
-	<div onclick="f1()" class="div2"><p style="text-align:center;font-family:verdana;">Submit</p></div>
-	<div onclick="f2()" class="div3"><p style="text-align:center;font-family:verdana;">Clear</p></div>
-	<p id="check" style="position:absolute;top:30%;left:45%;color:orange;font-size:40px;"></p>
-	<p  style="position:absolute;top:0px;left:20px;font-size:25px;">Score:<span id="score">0</span></p>
+
+	<canvas id = "canvas" > </canvas>
+  <h4> Hint : Any word that has a meaning..</h4>
+	<div class = "ansBox">
+    <p id = "ans" > </p>
+  </div>
+	<div onclick = "handleSubmit()" class = "submit">
+    <p class = "paraText" > Submit </p>
+  </div>
+	<div onclick = "handleErase()" class = "erase">
+    <p class = "paraText" > Clear </p>
+  </div>
+	<p id = "check" > </p>
+	<p class = "score" > Score:
+    <span id="score"> 0 </span>
+  </p>
+
 </body>
-<script>
-	
-	var c=document.getElementById("canvas1");
-	var ctx=c.getContext("2d");
-	c.width=window.innerWidth*0.99;
-	c.height=window.innerHeight*0.86;
-
-	var k=["pink","blue","red","orange","green","grey","purple"];
-
-	function Ball(x,y,r,dy,color,text)
-  {
-	this.x=x;
-	this.y=y;
-	this.r=r;
-    this.dy=dy;
-    this.color=color;
-    this.text=text;
-	this.draw=function()
-	{
-		ctx.beginPath();
-		ctx.arc(this.x,this.y,this.r,0,2*Math.PI);
-		ctx.fillStyle=this.color;
-		ctx.fill();
-		ctx.font="20px Arial";
-		ctx.fillStyle="black";
-		ctx.fillText(this.text,this.x-8,this.y+5);
-	}
-	this.update=function()
-	{
-		this.draw();
-		this.y+=this.dy;
-	}
-  }
-  var words=["hey","hello","how","so","good","low","go","wow","god","hell","yell","sow","log","sell","dog","hold","why"];
-  var theme=["h","e","l","l","o","y","w","s","g","o","d","f","p","k"];
-  var array=[];var y=-10;var l=0;
-  for(var i=0;i<30;i++)
-  {
-  	var x=Math.random()*(c.width-800)+360;
-    y-=60;
-    var r=20;
-    var dy=1;
-    var color=k[Math.floor(Math.random()*(k.length-1))];
-    var text=theme[Math.floor(Math.random()*(theme.length-1))];
-    l++;
-    array.push(new Ball(x,y,r,dy,color,text));
-  }
-
-  function animate()
-	{
-		requestAnimationFrame(animate);
-        ctx.clearRect(0,0,innerWidth,innerHeight);
-        for(var f=0;f<array.length;f++)
-        {
-        	array[f].update();
-        }
-    }
-     var s=0;var t=0;localStorage.setItem("t",0);
-     window.addEventListener("keyup",
-    function(event)
-    {
-      var char = String.fromCharCode(event.keyCode).toLowerCase();
-      for(var d=0;d<array.length;d++)
-      {
-        
-      	if(char==array[d].text)
-      	{
-      		if(array[d].y<=c.height-20 && array[d].y>=20)
-      		{localStorage.setItem("t",1);array[d].text="";array[d].r=0;break;}
-      	}
-
-      }
-      
-      if(localStorage.getItem("t")==1)
-     {(document.getElementById("ans").innerHTML)+=char; localStorage.setItem("t",0);}
-    });
-   
-     
-    animate();
-
-    function f2()
-    {
-    	document.getElementById("ans").innerHTML="";
-    }
-    var x=0;var ct=0;var len=0;var corr=0;
-    function f1()
-    {
-    	x=document.getElementById("ans").innerHTML;
-    	for(var q=0;q<words.length;q++)
-    	{
-    		if(x==words[q])
-    		{
-                document.getElementById("check").innerHTML="CORRECT";
-                len=(document.getElementById("ans").innerHTML).length;
-                document.getElementById("score").innerHTML=len;
-                var r=setTimeout(clear,500);
-                ct=1;
-    		}
-    	}
-    	if(ct!=1)
-    	{
-    		document.getElementById("check").innerHTML="WRONG";
-    		document.getElementById("ans").innerHTML="";
-            var r=setTimeout(clear,500);
-    	}
-    	function clear()
-    	{
-    		 document.getElementById("check").innerHTML="";
-    	}
-    	document.getElementById("ans").innerHTML="";
-    }
-</script>
+<script src="./index.js"> </script>
 </html>
